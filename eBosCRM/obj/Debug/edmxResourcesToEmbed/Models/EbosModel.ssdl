@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ebosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ApplicationUserPermissionGroups">
+    <Key>
+      <PropertyRef Name="ApplicationUserPermissionGroupID" />
+    </Key>
+    <Property Name="ApplicationUserPermissionGroupID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ApplicationUserID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="PermissionGroupID" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ApplicationUsers">
+    <Key>
+      <PropertyRef Name="ApplicationUserID" />
+    </Key>
+    <Property Name="ApplicationUserID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="75" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CustomerCalls">
+    <Key>
+      <PropertyRef Name="CustomerCallID" />
+    </Key>
+    <Property Name="CustomerCallID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CustomerID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CustomerNo" Type="int" Nullable="false" />
+    <Property Name="DateOfCall" Type="date" Nullable="false" />
+    <Property Name="TimeOfCall" Type="time" Precision="7" Nullable="false" />
+    <Property Name="Subject" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Description" Type="text" />
+  </EntityType>
+  <EntityType Name="Customers">
+    <Key>
+      <PropertyRef Name="CustomerID" />
+    </Key>
+    <Property Name="CustomerID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CustomerNo" Type="int" Nullable="false" />
+    <Property Name="CustomerName" Type="varchar" MaxLength="75" Nullable="false" />
+    <Property Name="CustomerSurname" Type="varchar" MaxLength="75" Nullable="false" />
+    <Property Name="Address" Type="varchar" MaxLength="100" />
+    <Property Name="PostCode" Type="int" Nullable="false" />
+    <Property Name="Country" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="DateOfBirth" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Employees">
+    <Key>
+      <PropertyRef Name="EmployeeID" />
+    </Key>
+    <Property Name="EmployeeID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ApplicationUserID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="DoB" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PermissionGroups">
+    <Key>
+      <PropertyRef Name="PermissionGroupID" />
+    </Key>
+    <Property Name="PermissionGroupID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="PermissionGroupName" Type="varchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Permissions">
+    <Key>
+      <PropertyRef Name="PermissionID" />
+    </Key>
+    <Property Name="PermissionID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="PermissionGroupID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="PermissionName" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="PermissionDescription" Type="text" />
+  </EntityType>
+  <Association Name="FK_ApplicationUserPermissionGroups_ApplicationUsers">
+    <End Role="ApplicationUsers" Type="Self.ApplicationUsers" Multiplicity="1" />
+    <End Role="ApplicationUserPermissionGroups" Type="Self.ApplicationUserPermissionGroups" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ApplicationUsers">
+        <PropertyRef Name="ApplicationUserID" />
+      </Principal>
+      <Dependent Role="ApplicationUserPermissionGroups">
+        <PropertyRef Name="ApplicationUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ApplicationUserPermissionGroups_PermissionGroups">
+    <End Role="PermissionGroups" Type="Self.PermissionGroups" Multiplicity="1" />
+    <End Role="ApplicationUserPermissionGroups" Type="Self.ApplicationUserPermissionGroups" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PermissionGroups">
+        <PropertyRef Name="PermissionGroupID" />
+      </Principal>
+      <Dependent Role="ApplicationUserPermissionGroups">
+        <PropertyRef Name="PermissionGroupID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CustomerCalls_Customers">
+    <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+    <End Role="CustomerCalls" Type="Self.CustomerCalls" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="CustomerCalls">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employees_ApplicationUsers">
+    <End Role="ApplicationUsers" Type="Self.ApplicationUsers" Multiplicity="1" />
+    <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ApplicationUsers">
+        <PropertyRef Name="ApplicationUserID" />
+      </Principal>
+      <Dependent Role="Employees">
+        <PropertyRef Name="ApplicationUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Permissions_PermissionGroups">
+    <End Role="PermissionGroups" Type="Self.PermissionGroups" Multiplicity="1" />
+    <End Role="Permissions" Type="Self.Permissions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PermissionGroups">
+        <PropertyRef Name="PermissionGroupID" />
+      </Principal>
+      <Dependent Role="Permissions">
+        <PropertyRef Name="PermissionGroupID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="GetApplicationUserInfos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ApplicationUserID" Type="uniqueidentifier" Mode="In" />
+  </Function>
+  <EntityContainer Name="ebosModelStoreContainer">
+    <EntitySet Name="ApplicationUserPermissionGroups" EntityType="Self.ApplicationUserPermissionGroups" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ApplicationUsers" EntityType="Self.ApplicationUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CustomerCalls" EntityType="Self.CustomerCalls" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PermissionGroups" EntityType="Self.PermissionGroups" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Permissions" EntityType="Self.Permissions" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_ApplicationUserPermissionGroups_ApplicationUsers" Association="Self.FK_ApplicationUserPermissionGroups_ApplicationUsers">
+      <End Role="ApplicationUsers" EntitySet="ApplicationUsers" />
+      <End Role="ApplicationUserPermissionGroups" EntitySet="ApplicationUserPermissionGroups" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ApplicationUserPermissionGroups_PermissionGroups" Association="Self.FK_ApplicationUserPermissionGroups_PermissionGroups">
+      <End Role="PermissionGroups" EntitySet="PermissionGroups" />
+      <End Role="ApplicationUserPermissionGroups" EntitySet="ApplicationUserPermissionGroups" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CustomerCalls_Customers" Association="Self.FK_CustomerCalls_Customers">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="CustomerCalls" EntitySet="CustomerCalls" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employees_ApplicationUsers" Association="Self.FK_Employees_ApplicationUsers">
+      <End Role="ApplicationUsers" EntitySet="ApplicationUsers" />
+      <End Role="Employees" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Permissions_PermissionGroups" Association="Self.FK_Permissions_PermissionGroups">
+      <End Role="PermissionGroups" EntitySet="PermissionGroups" />
+      <End Role="Permissions" EntitySet="Permissions" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,82 @@
+﻿.login,
+.image {
+    min-height: 100vh
+}
+
+.bg-image {
+    background-image: url('../Assets/supportpic.png');
+    background-size: cover;
+    background-position: center center
+}
+.special-danger {
+    background-color: rgb(255,129,84);
+    border: 0;
+}
+
+.special-active {
+    background: rgb(255, 129, 84);
+    color: white;
+    text-decoration: transparent;
+}
+
+#login-card {
+    padding: 1rem;
+    align-items: center;
+    border-radius: 10px;
+}
+body {
+    padding-top: 0;
+}
+
+.wrapper {
+    position: relative;
+}
+
+.sidebar {
+    position: fixed;
+    width: 250px;
+    height: 100%;
+    padding: 10px 0
+}
+
+.wrapper .sidebar ul li {
+    padding: 15px;
+}
+
+.wrapper .sidebar ul li a {
+    color: white;
+    display: block;
+
+}
+
+.wrapper .sidebar ul li a .fas {
+    width: 25px !important
+}
+
+.wrapper .sidebar ul li a .far {
+    width: 25px !important
+}
+
+.wrapper .sidebar ul li:hover {
+    background: rgb(255, 129, 84);
+    transition: ease-in 10ms;
+}
+
+.wrapper .sidebar ul li a:hover {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold
+}
+.internal-panel {
+    padding-left: 16rem
+}
+
+@media screen and (min-width: 50px) and (max-width:400px ) {
+    .sidebar {
+        visibility: hidden;
+    }
+
+    .internal-panel {
+        padding-left: 0;
+    }
+}

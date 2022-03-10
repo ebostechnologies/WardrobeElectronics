@@ -1,0 +1,42 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ output extension=".cs" #>
+
+<#@ Assembly Name="System.Data" #>
+<#@ Assembly Name="System.Linq" #>
+
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+
+<#@ import namespace="System.Data.SqlClient" #>
+
+<#
+	var connectionString = "data source=.;initial catalog=ebos;persist security info=True;user id=ebos;password=ebos0!";
+#>
+namespace eBosCRM.Models
+{
+	   public enum PermissionGroupTypes
+	   {
+	   <#
+		   using(SqlConnection conn = new SqlConnection(connectionString))
+		   {
+					string sql = @"SELECT PermissionGroupName
+												FROM PermissionGroups";
+
+					SqlCommand sqlCommand = new SqlCommand(sql, conn);
+
+					conn.Open();
+
+					SqlDataReader reader = sqlCommand.ExecuteReader();
+					bool loop = reader.Read();
+
+					while(loop)
+					{
+							string permissionGroupName = reader["PermissionGroupName"].ToString(); #>
+							<#= permissionGroupName.Replace(".", "").Replace("/", "_").Replace("+", "_").Replace(" ", "_").Replace("-", "_").Replace("%", "x").Replace("(", "").Replace(")", "").Replace("°", "_") #>,
+					<# loop = reader.Read();
+					}
+		   }
+	#>
+	   }
+}

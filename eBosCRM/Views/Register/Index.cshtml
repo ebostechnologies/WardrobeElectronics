@@ -1,0 +1,71 @@
+﻿@using eBosCRM.Models
+@model eBosCRM.Models.Employee
+
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_loginLayout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control rounded-pill border-0 shadow-sm px-4", @placeholder = "First name:", @required = "true" } })
+            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control rounded-pill border-0 shadow-sm px-4", @placeholder = "Last Name:", @required = "true" } })
+            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DoB, new { htmlAttributes = new { @class = "form-control rounded-pill border-0 shadow-sm px-4", @placeholder = "Date of Birth:", @required = "true", @type = "date" } })
+            @Html.ValidationMessageFor(model => model.DoB, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.DropDownListFor(x => Model.PermissionGroupID, new SelectList(ViewBag.Permissions, "PermissionGroupID", "PermissionGroupName", 0), htmlAttributes: new { @class = "form-control rounded-pill border-0 shadow-sm px-4", id = "PermissionGroup"})
+            @Html.ValidationMessageFor(x => x.PermissionGroupID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    if (!String.IsNullOrEmpty(ViewBag.errorMessage))
+    {
+        <div class="alert alert-danger" role="alert">
+            @ViewBag.errorMessage
+        </div>
+    }
+
+    <div class="form-group">
+        <div>
+            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control rounded-pill border-0 shadow-sm px-4", @type = "password", @required = "true", @placeholder = "password:" } })
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div>
+            @Html.EditorFor(model => model.ConfirmPassord, new { htmlAttributes = new { @class = "form-control rounded-pill border-0 shadow-sm px-4", @type = "password", @required = "true", @placeholder = "Confirm password:" } })
+            @Html.ValidationMessageFor(model => model.ConfirmPassord, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="col-6 align-self-center"><button type="submit" class="btn btn-danger btn-block text-uppercase rounded-pill shadow-sm mb-0 special-danger">Sign Up!</button></div>
+    <br />
+
+    <div class="text-center d-flex justify-content-between mt-4">
+        <p> Have already an account ? @Html.ActionLink("Sign In now!", "Index", "Login")</p>
+    </div>
+}

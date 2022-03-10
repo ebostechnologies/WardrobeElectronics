@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ebosModelStoreContainer" CdmEntityContainer="EbosEntities">
+    <EntitySetMapping Name="ApplicationUserPermissionGroups">
+      <EntityTypeMapping TypeName="ebosModel.ApplicationUserPermissionGroup">
+        <MappingFragment StoreEntitySet="ApplicationUserPermissionGroups">
+          <ScalarProperty Name="ApplicationUserPermissionGroupID" ColumnName="ApplicationUserPermissionGroupID" />
+          <ScalarProperty Name="ApplicationUserID" ColumnName="ApplicationUserID" />
+          <ScalarProperty Name="PermissionGroupID" ColumnName="PermissionGroupID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ApplicationUsers">
+      <EntityTypeMapping TypeName="ebosModel.ApplicationUser">
+        <MappingFragment StoreEntitySet="ApplicationUsers">
+          <ScalarProperty Name="ApplicationUserID" ColumnName="ApplicationUserID" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CustomerCalls">
+      <EntityTypeMapping TypeName="ebosModel.CustomerCall">
+        <MappingFragment StoreEntitySet="CustomerCalls">
+          <ScalarProperty Name="CustomerCallID" ColumnName="CustomerCallID" />
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="CustomerNo" ColumnName="CustomerNo" />
+          <ScalarProperty Name="DateOfCall" ColumnName="DateOfCall" />
+          <ScalarProperty Name="TimeOfCall" ColumnName="TimeOfCall" />
+          <ScalarProperty Name="Subject" ColumnName="Subject" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="ebosModel.Customer">
+        <MappingFragment StoreEntitySet="Customers">
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="CustomerNo" ColumnName="CustomerNo" />
+          <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+          <ScalarProperty Name="CustomerSurname" ColumnName="CustomerSurname" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="PostCode" ColumnName="PostCode" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employees">
+      <EntityTypeMapping TypeName="ebosModel.Employee">
+        <MappingFragment StoreEntitySet="Employees">
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="ApplicationUserID" ColumnName="ApplicationUserID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="DoB" ColumnName="DoB" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PermissionGroups">
+      <EntityTypeMapping TypeName="ebosModel.PermissionGroup">
+        <MappingFragment StoreEntitySet="PermissionGroups">
+          <ScalarProperty Name="PermissionGroupID" ColumnName="PermissionGroupID" />
+          <ScalarProperty Name="PermissionGroupName" ColumnName="PermissionGroupName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Permissions">
+      <EntityTypeMapping TypeName="ebosModel.Permission">
+        <MappingFragment StoreEntitySet="Permissions">
+          <ScalarProperty Name="PermissionID" ColumnName="PermissionID" />
+          <ScalarProperty Name="PermissionGroupID" ColumnName="PermissionGroupID" />
+          <ScalarProperty Name="PermissionName" ColumnName="PermissionName" />
+          <ScalarProperty Name="PermissionDescription" ColumnName="PermissionDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="GetApplicationUserInfos" FunctionName="ebosModel.Store.GetApplicationUserInfos">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ebosModel.ApplicationUserInfos">
+          <ScalarProperty Name="ApplicationUserID" ColumnName="ApplicationUserID" />
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="DoB" ColumnName="DoB" />
+          <ScalarProperty Name="TotalPermissionAssigned" ColumnName="TotalPermissionAssigned" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

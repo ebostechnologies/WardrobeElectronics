@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ad8aac962dcf4eb0b806dcc032a29013" Name="Diagram1">
+        <EntityTypeShape EntityType="ebosModel.ApplicationUserPermissionGroup" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ebosModel.ApplicationUser" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ebosModel.CustomerCall" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ebosModel.Customer" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ebosModel.Employee" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ebosModel.PermissionGroup" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ebosModel.Permission" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="ebosModel.FK_Permissions_PermissionGroups" />
+        <AssociationConnector Association="ebosModel.FK_ApplicationUserPermissionGroups_ApplicationUsers" />
+        <AssociationConnector Association="ebosModel.FK_ApplicationUserPermissionGroups_PermissionGroups" />
+        <AssociationConnector Association="ebosModel.FK_Employees_ApplicationUsers" />
+        <AssociationConnector Association="ebosModel.FK_CustomerCalls_Customers" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,9 @@
+C:\Users\Ebos-Kyriakos\Desktop\Miscellaneous\Candidates\Wardrobe-Electronics\EBos.Database\bin\Debug\EBos.Database.dacpac
+C:\Users\Ebos-Kyriakos\Desktop\Miscellaneous\Candidates\Wardrobe-Electronics\EBos.Database\bin\Debug\EBos.Database.dll
+C:\Users\Ebos-Kyriakos\Desktop\Miscellaneous\Candidates\Wardrobe-Electronics\EBos.Database\bin\Debug\EBos.Database.pdb
+C:\Users\Ebos-Kyriakos\Desktop\Miscellaneous\Candidates\Wardrobe-Electronics\EBos.Database\obj\Debug\EBos.Database.dll
+C:\Users\Ebos-Kyriakos\Desktop\Miscellaneous\Candidates\Wardrobe-Electronics\EBos.Database\obj\Debug\EBos.Database.pdb
+C:\Users\Ebos-Kyriakos\Desktop\Miscellaneous\Candidates\Wardrobe-Electronics\EBos.Database\obj\Debug\Model.xml
+C:\Users\Ebos-Kyriakos\Desktop\Miscellaneous\Candidates\Wardrobe-Electronics\EBos.Database\obj\Debug\refactor.xml
+C:\Users\Ebos-Kyriakos\Desktop\Miscellaneous\Candidates\Wardrobe-Electronics\EBos.Database\obj\Debug\postdeploy.sql
+C:\Users\Ebos-Kyriakos\Desktop\Miscellaneous\Candidates\Wardrobe-Electronics\EBos.Database\obj\Debug\predeploy.sql

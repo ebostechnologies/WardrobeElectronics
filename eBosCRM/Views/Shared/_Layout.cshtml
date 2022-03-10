@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Html.DevExpress().GetStyleSheets(
+        new StyleSheet { ExtensionSuite = ExtensionSuite.NavigationAndLayout },
+        new StyleSheet { ExtensionSuite = ExtensionSuite.Editors },
+        new StyleSheet { ExtensionSuite = ExtensionSuite.HtmlEditor },
+        new StyleSheet { ExtensionSuite = ExtensionSuite.GridView },
+        new StyleSheet { ExtensionSuite = ExtensionSuite.PivotGrid },
+        new StyleSheet { ExtensionSuite = ExtensionSuite.Chart },
+        new StyleSheet { ExtensionSuite = ExtensionSuite.Report },
+        new StyleSheet { ExtensionSuite = ExtensionSuite.Scheduler },
+        new StyleSheet { ExtensionSuite = ExtensionSuite.TreeList },
+        new StyleSheet { ExtensionSuite = ExtensionSuite.Spreadsheet },
+        new StyleSheet { ExtensionSuite = ExtensionSuite.RichEdit },
+        new StyleSheet { ExtensionSuite = ExtensionSuite.SpellChecker },
+        new StyleSheet { ExtensionSuite = ExtensionSuite.CardView}
+        )
+
+    @Scripts.Render("~/bundles/jquery")
+    @Html.DevExpress().GetScripts(
+        new Script { ExtensionSuite = ExtensionSuite.NavigationAndLayout },
+        new Script { ExtensionSuite = ExtensionSuite.HtmlEditor },
+        new Script { ExtensionSuite = ExtensionSuite.GridView },
+        new Script { ExtensionSuite = ExtensionSuite.PivotGrid },
+        new Script { ExtensionSuite = ExtensionSuite.Editors },
+        new Script { ExtensionSuite = ExtensionSuite.Chart },
+        new Script { ExtensionSuite = ExtensionSuite.Report },
+        new Script { ExtensionSuite = ExtensionSuite.Scheduler },
+        new Script { ExtensionSuite = ExtensionSuite.TreeList },
+        new Script { ExtensionSuite = ExtensionSuite.Spreadsheet },
+        new Script { ExtensionSuite = ExtensionSuite.RichEdit },
+        new Script { ExtensionSuite = ExtensionSuite.SpellChecker },
+        new Script { ExtensionSuite = ExtensionSuite.CardView})
+</head>
+<body style="padding-top: 0">
+
+    <div class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            @Html.ActionLink("EBOS CRM Platform", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <div class="col-md-6 col-lg-6"></div>
+                <ul class="navbar-nav">
+                    <li id="home" class="nav-item ">@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    @if (ViewBag.IsAdmin || ViewBag.IsEmployee || ViewBag.IsManager || ViewBag.IsDirector)
+                    {
+                        <li id="customers" class="nav-item">@Html.ActionLink("Customers", "Index", "CustomersView", new { area = "" }, new { @class = "nav-link" })</li>
+                    }
+
+                    @if (ViewBag.IsAdmin || ViewBag.IsManager || ViewBag.IsDirector)
+                    {
+                        <li id="calls" class="nav-item">@Html.ActionLink("Calls", "Index", "Calls", new { area = "" }, new { @class = "nav-link" })</li>
+                    }
+
+                    @if (ViewBag.IsAdmin || ViewBag.IsManager)
+                    {
+                        <li id="reports" class="nav-item">@Html.ActionLink("Reports", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    }
+
+                    @if (ViewBag.IsAdmin)
+                    {
+                        <li id="hr" class="nav-item">@Html.ActionLink("H.R", "Index", "HumanResources", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li id="permissions" class="nav-item">@Html.ActionLink("Permissions", "Index", "PermissionsView", new { area = "" }, new { @class = "nav-link" })</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="wrapper d-flex">
+        <div id="sidebar" class="sidebar bg-dark">
+            <img class="img-fluid" width="200px" src="../Assets/user.png" /><br />
+            <hr />
+            <div class="text-center text-white">
+                <h2> @ViewData["Username"]</h2>
+            </div>
+            <hr />
+            <ul style="list-style: none">
+                <li id="sub-home" class="nav-item">@Html.ActionLink("HOME", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+
+                @if (ViewBag.IsAdmin || ViewBag.IsEmployee || ViewBag.IsManager || ViewBag.IsDirector)
+                {
+                    <li id="sub-customers" class="nav-item">@Html.ActionLink("CUSTOMERS", "Index", "CustomersView", new { area = "" }, new { @class = "nav-link" })</li>
+                }
+
+                @if (ViewBag.IsAdmin || ViewBag.IsManager || ViewBag.IsDirector)
+                {
+                    <li id="sub-calls" class="nav-item">@Html.ActionLink("CALLS", "Index", "Calls", new { area = "" }, new { @class = "nav-link" })</li>
+                }
+
+                @if (ViewBag.IsAdmin || ViewBag.IsManager)
+                {
+                    <li id="sub-reports" class="nav-item">@Html.ActionLink("REPORTS", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                }
+
+                @if (ViewBag.IsAdmin)
+                {
+                    <li id="sub-hr" class="nav-item">@Html.ActionLink("H.R", "Index", "HumanResources", new { area = "" }, new { @class = "nav-link" })</li>
+                }
+
+                @Html.ActionLink("Log Out", "Logout", "Login", new { area = "" }, new { @class = "btn btn-infos btn" })
+            </ul>
+        </div>
+    </div>
+    <div class="internal-panel">
+        @RenderBody()
+    </div>
+    <hr />
+    <footer class="content">
+        <p>&copy; @DateTime.Now.Year - EBOS CRM Platform</p>
+    </footer>
+
+
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,19 @@
+﻿@model IEnumerable<eBosCRM.Models.PermissionGroup>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Permission Groups</h3>
+
+@Html.Action("GridViewPermissions", "PermissionsView")
+
+
+@Scripts.Render("~/bundles/jquery")
+<script>
+    $(document).ready(function () {
+        $('#navbarTogglerDemo02 ul li').removeClass("active");
+        $("#permissions").addClass('active');
+    });
+</script>

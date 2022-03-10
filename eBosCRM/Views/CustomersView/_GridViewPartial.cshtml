@@ -1,0 +1,47 @@
+@using System.Drawing
+@{
+    var grid = Html.DevExpress().GridView(settings => {
+        settings.Name = "GridView";
+        settings.CallbackRouteValues = new { Controller = "CustomersView", Action = "GridViewPartial" };
+
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "CustomersView", Action = "GridViewPartialAddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "CustomersView", Action = "GridViewPartialUpdate" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "CustomersView", Action = "GridViewPartialDelete" };
+        settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
+        settings.SettingsBehavior.ConfirmDelete = true;
+        settings.SettingsBehavior.AllowFocusedRow = true;
+        settings.Styles.FocusedRow.BackColor = Color.OrangeRed;
+        settings.Styles.FocusedRow.ForeColor = Color.White;
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+        settings.CommandColumn.Visible = true;
+        settings.CommandColumn.ShowNewButton = true;
+        settings.CommandColumn.ShowDeleteButton = true;
+        settings.CommandColumn.ShowEditButton = true;
+
+        settings.KeyFieldName = "CustomerID";
+
+        settings.SettingsPager.Visible = true;
+
+        settings.SettingsPager.SEOFriendly = SEOFriendlyMode.Enabled;
+        settings.Settings.ShowFilterRow = true;
+
+        settings.SettingsAdaptivity.AdaptivityMode = GridViewAdaptivityMode.Off;
+        settings.SettingsAdaptivity.AdaptiveColumnPosition = GridViewAdaptiveColumnPosition.Right;
+        settings.SettingsAdaptivity.AdaptiveDetailColumnCount = 1;
+        settings.SettingsAdaptivity.AllowOnlyOneAdaptiveDetailExpanded = true;
+        settings.SettingsAdaptivity.HideDataCellsAtWindowInnerWidth = 0;
+
+        settings.Columns.Add("CustomerNo");
+        settings.Columns.Add("CustomerName");
+        settings.Columns.Add("CustomerSurname");
+        settings.Columns.Add("Address");
+        settings.Columns.Add("PostCode");
+        settings.Columns.Add("Country");
+        settings.Columns.Add("DateOfBirth");
+    });
+    if (ViewData["EditError"] != null){
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Model).GetHtml()

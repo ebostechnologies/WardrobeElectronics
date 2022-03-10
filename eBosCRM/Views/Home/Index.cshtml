@@ -1,0 +1,58 @@
+﻿@model eBosCRM.Models.Employee
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DoB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DoB)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplicationUser.Username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplicationUser.Username)
+        </dd>
+
+    </dl>
+</div>
+
+
+@Scripts.Render("~/bundles/jquery")
+<script>
+    $(document).ready(function () {
+        $('#navbarTogglerDemo02 ul li').removeClass("active");
+        $('#sidebar ul li').removeClass("active");
+
+        $("#sub-home").addClass('special-active');
+        $("#home").addClass('active');
+    });
+</script>

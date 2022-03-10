@@ -1,0 +1,24 @@
+﻿@model IEnumerable<eBosCRM.Models.CustomerCall>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<h3 align="center">Customers</h3>
+
+@Html.Action("GridViewCustomerCalls", "Calls")
+
+
+
+@Scripts.Render("~/bundles/jquery")
+<script>
+    $(document).ready(function () {
+        $('#navbarTogglerDemo02 ul li').removeClass("active");
+        $('#sidebar ul li').removeClass("active");
+
+        $("#sub-calls").addClass('special-active');
+        $("#calls").addClass('active');
+    });
+</script>
